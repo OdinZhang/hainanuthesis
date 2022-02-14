@@ -1,0 +1,118 @@
+\documentclass{hainanuthesis}
+
+\title{海南大学毕业设计模板}
+\author{author_name}
+
+\begin{document}
+\begin{abstract}
+    这是中文摘要
+    \keywords{中文；关键字}
+\end{abstract}
+
+\begin{abstract}[en]
+    This is English abstracts.
+    \keywords[en]{English; Keywords}
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{介绍}
+
+本模板基于2022年海南大学毕业设计排版要求制作。
+其中封面过于复杂，
+暂不支持，
+有需要的可以手动将其转为PDF格式之后将其导入。
+
+\subsection{使用的宏包}
+
+本模板目前所使用的宏包见\cref{tb:01}。
+
+\begin{table}[!htbp]
+    \begin{center}
+        \caption{宏包及功能}
+        \label{tb:01}
+        \begin{tabular}{cc}
+            \verb|fontspec| & 英文字体设置             \\
+            \verb|expl3|    & \LaTeX 3语法设置         \\
+            \verb|hyperref| & 启用文章超链接及PDF书签  \\
+            \verb|geometry| & 页面布局设置             \\
+            \verb|fancyhdr| & 页眉页脚设置             \\
+            \verb|titletoc| & 目录格式设置             \\
+            \verb|cleveref| & 公式、图片、表格等的引用 \\
+            \verb|caption|  & 公式、图片、表格等的标号 \\
+            \verb|biblatex| & 参考文献的引用           \\
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\subsection{编译}
+
+\begin{verbatim}
+latexmk
+    -synctex=1
+    -interaction=nonstopmode
+    -file-line-error
+    -pdf
+    -xelatex
+    main.tex
+\end{verbatim}
+
+\section{部分命令演示}
+
+\subsection{摘要与关键字}
+
+\subsubsection{摘要}
+\begin{verbatim}
+\begin{abstract}
+
+\end{abstract}
+\end{verbatim}
+
+上述命令将显示中文摘要。
+
+\begin{verbatim}
+\begin{abstract}[en]
+
+\end{abstract}
+\end{verbatim}
+
+上述命令将显示英文摘要。
+其中中括号中内容不为\verb|zh|时均为英文。
+
+\subsubsection{关键字}
+
+中文关键字为\verb|\keywords{}|，
+英文关键字为\verb|\keywords[en]{}|。
+同样的，
+中括号内参数不为\verb|zh|时均为英文。
+
+\subsection{致谢}
+
+\begin{verbatim}
+\begin{acknowledge}
+
+\end{acknowledge}
+\end{verbatim}
+
+\subsection{参考文献}
+
+在文件头使用命令
+\verb|\addbibresource{filename.bib}|
+引入\verb|biblatex|文件，
+之后在需要输出参考文献的地方使用
+\verb|\printbib|即可。
+
+\subsection{附件}
+
+使用\verb|\addons|命令。
+
+\begin{acknowledge}
+    致谢部分
+\end{acknowledge}
+
+\addons
+
+这里是附件部分。
+\end{document}
