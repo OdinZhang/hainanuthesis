@@ -1,5 +1,5 @@
 \ProvidesClass{hainanuthesis}
-\LoadClass[linespread=1.5,a4paper,zihao=-4]{ctexart}
+\LoadClass[linespread=1.5,a4paper,zihao=-4,fontset=windows]{ctexart}
 
 % 英文字体
 \RequirePackage{fontspec}
