@@ -1,9 +1,16 @@
 \documentclass{hainanuthesis}
 
 \title{海南大学毕业设计模板}
-\author{author_name}
+\author{xxx}
+\id{123456789}
+\grade{20xx级}
+\faculty{x学院}
+\department{x系}
+\major{xxxx}
+\teacher{xxx}
 
 \begin{document}
+\makecover
 \begin{abstract}
     这是中文摘要
     \keywords{中文；关键字}
@@ -60,6 +67,29 @@ latexmk
 \end{verbatim}
 
 \section{部分命令演示}
+
+\subsection{封面}
+
+使用命令
+\verb|\makecover|
+来创建一个新的封面。
+
+其中新定义的命令与实际含义的对应关系见\cref{tb:02}。
+
+\begin{table}[!htbp]
+    \begin{center}
+        \caption{命令及含义}
+        \label{tb:02}
+        \begin{tabular}{ll}
+            \verb|\id|         & 学号     \\
+            \verb|\grade|      & 年级     \\
+            \verb|\faculty|    & 学院     \\
+            \verb|\department| & 系别     \\
+            \verb|\major|      & 专业     \\
+            \verb|\teacher|    & 指导老师 \\
+        \end{tabular}
+    \end{center}
+\end{table}
 
 \subsection{摘要与关键字}
 

@@ -9,6 +9,13 @@
 \RequirePackage{expl3}
 
 \renewcommand{\title}[1]{\gdef\@title{#1}\newcommand{\thistitle}{#1}}
+\renewcommand{\author}[1]{\gdef\@author{#1}\newcommand{\thisauthor}{#1}}
+\newcommand{\id}[1]{\newcommand{\thisid}{#1}}
+\newcommand{\grade}[1]{\newcommand{\thisgrade}{#1}}
+\newcommand{\faculty}[1]{\newcommand{\thisfaculty}{#1}}
+\newcommand{\department}[1]{\newcommand{\thisdepartment}{#1}}
+\newcommand{\major}[1]{\newcommand{\thismajor}{#1}}
+\newcommand{\teacher}[1]{\newcommand{\thisteacher}{#1}}
 
 % 书签
 \RequirePackage[hidelinks]{hyperref}
@@ -33,17 +40,17 @@
 \ExplSyntaxOn
 % 定义关键字
 \newcommand{\keywords}[2][zh]{
-    \str_if_eq:nnTF{#1}{zh}
-		{\str_set:Nn\l_keywords_str{关键字：}}
-		{\str_set:Nn\l_keywords_str{Keywords:}}
-	\par{\noindent\textbf{\str_use:N\l_keywords_str}}~{#2}
+\str_if_eq:nnTF{#1}{zh}
+{\str_set:Nn\l_keywords_str{关键字：}}
+{\str_set:Nn\l_keywords_str{Keywords:}}
+\par{\noindent\textbf{\str_use:N\l_keywords_str}}~{#2}
 }
 
 % 重定义摘要环境
 \renewenvironment{abstract}[1][zh]{
 	\str_if_eq:nnTF{#1}{zh}
-		{\tl_set:Nn\l_abstract_tl{\ziju{4}摘要}}
-		{\tl_set:Nn\l_abstract_tl{Abstract}}
+	{\tl_set:Nn\l_abstract_tl{\ziju{4}摘要}}
+	{\tl_set:Nn\l_abstract_tl{Abstract}}
 	\begin{center}
 		{\zihao{3}\textbf{\tl_use:N\l_abstract_tl}\vspace{-.5em}\vspace{\z@}}
 	\end{center}
@@ -101,8 +108,8 @@
 \RequirePackage[style=gb7714-2015]{biblatex}
 \renewcommand{\bibfont}{\zihao{5}}
 \defbibheading{bibliography}[\bibname]{%
-\section*{\begin{center}{\zihao{3}\textbf{#1}}\end{center}}%
-\markboth{#1}{#1}}
+	\section*{\begin{center}{\zihao{3}\textbf{#1}}\end{center}}%
+	\markboth{#1}{#1}}
 \newcommand{\printbib}{
 	\printbibliography[title={参考文献}]
 	\addcontentsline{toc}{section}{参考文献}
@@ -112,4 +119,36 @@
 \newcommand{\addons}{
 	\section*{附件}
 	\addcontentsline{toc}{section}{附件}
+}
+
+% 封面
+\newcommand{\coveritem}[2]{{{#1}：}{\underline{\makebox[14.5\ccwd]{#2}}}\\\vspace{-1.9bp}}
+\newcommand{\makecover}{
+	\newgeometry{top=2.54cm,bottom=2.54cm,left=3.17cm,right=3.17cm}
+	\thispagestyle{empty}
+	\vspace*{42bp}
+	\begin{center}
+		{\songti\zihao{1}\ziju{0.5}海南大学}
+	\end{center}
+	\vspace{8bp}
+	\begin{center}
+		{\heiti\zihao{1}{\ziju{0.5}毕业论文}（设计）}
+	\end{center}
+	\vspace{130bp}
+	\begin{center}
+		{\zihao{3}
+			\coveritem{\ziju{2}题目}{\thistitle}
+			\coveritem{\ziju{2}学号}{\thisid}
+			\coveritem{\ziju{2}姓名}{\thisauthor}
+			\coveritem{\ziju{2}年级}{\thisgrade}
+			\coveritem{\ziju{2}学院}{\thisfaculty}
+			\coveritem{\ziju{2}系别}{\thisdepartment}
+			\coveritem{\ziju{2}专业}{\thismajor}
+			\coveritem{指导教师}{\thisteacher}
+			{完成日期：\makebox[14.5\ccwd]{\makebox[3\ccwd]{\number\year}年\makebox[2.5\ccwd]{\number\month}月\makebox[2.5\ccwd]{\number\day}日}\\}
+		}
+	\end{center}
+	\newpage
+	\setcounter{page}{1}
+	\restoregeometry
 }
